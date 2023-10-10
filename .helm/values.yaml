@@ -10,7 +10,7 @@ postgresql:
       memory: 1Gi
     limits:
       cpu: 2000m
-      memory: 3Gi
+      memory: 5Gi
 app:
   envs:
     NODE_ENV: production
@@ -18,4 +18,3 @@ app:
     WEBHOOK_DOMAIN: chessbot.kozlov.cloud
     DB_HOST: chessbot-postgresql
     DB_NAME: chessbot
-    # DB_SSLMODE: required
