@@ -30,8 +30,21 @@ spec:
             sleep 1
           done
         env:
-        - name: NODE_ENV
-          value: production
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: password
+        envFrom:
+            - configMapRef:
+                name: app-envs
+            - secretRef:
+                name: app-envs
       containers:
       - name: backend
         image: {{ .Values.werf.image.backend }}
