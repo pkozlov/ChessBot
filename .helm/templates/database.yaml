@@ -22,9 +22,6 @@ spec:
   preparedDatabases:
     chessbot:
       defaultUsers: true
-      schemas:
-        public:
-          defaultUsers: false
   postgresql:
     version: "14"
     parameters:
