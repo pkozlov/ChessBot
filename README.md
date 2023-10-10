@@ -55,6 +55,7 @@ To expose local server with publicly available https endpoint you can use [Cloud
 ## Available commands
 
 - `npm run build` Builds frontend for Mini App to folder `build`
+- `npm run build-server` Create production server build to folder `server-build`
 - `npm run start` Starts development server with only frontend
 - `npm run server` Starts development server with API, websocket, bot webhook register and frontend static files serving on port `3000`
 - `npm run makemigrations` Create migration with database changes
@@ -65,7 +66,8 @@ To expose local server with publicly available https endpoint you can use [Cloud
 - Unit tests
 - Translations to other languages
 - List of your games
-- Move history with possibility to go backward and forward
+- History of game moves with possibility to go backward and forward
+- Logging and tracing
 
 Feel free to make PR
 
