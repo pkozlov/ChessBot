@@ -7,7 +7,10 @@ import * as schema from './schema';
 const { Client } = pg;
  
 const client = new Client({
-  connectionString: `postgres://${process.env.DB_USER || "postgres"}:${process.env.DB_PASS}@${process.env.DB_HOST || "localhost"}:${process.env.DB_PORT || "5432"}/${process.env.DB_NAME || "chess"}${process.env.DB_SSLMODE ? '?sslmode=require' : ''}`
+  connectionString: `postgres://${process.env.DB_USER || "postgres"}:${process.env.DB_PASS}@${process.env.DB_HOST || "localhost"}:${process.env.DB_PORT || "5432"}/${process.env.DB_NAME || "chess"}${process.env.DB_SSLMODE ? '?sslmode=require' : ''}`,
+  ssl: process.env.DB_SSLMODE ? {
+    rejectUnauthorized: false
+  } : false
 });
 
 const db = drizzle(client, { schema });

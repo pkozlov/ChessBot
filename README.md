@@ -84,7 +84,23 @@ Also we have working `Dockerfile` with frontend and backend images.
 
 You can find configuration in `.helm` folder and `werf.yaml` file.
 
-Set environment for Kubernetes config, like ``
+1. Set environment for Kubernetes config, like `WERF_KUBECONFIG_BASE64`.
+2. Generate `WERF_SECRET_KEY` and configure secret values in `.helm/secret-values.yaml`
+3. Provide `REACT_APP_BOT_URI` env variable
+4. Just run `werf converge` to deploy to Kubernetes cluster
+
+This configuration uses [Zalando Postgres Operator](https://github.com/zalando/postgres-operator) for database.
+
+For more information, refer to the [werf official documentation](https://werf.io/documentation/v1.2/).
+
+## Imlementation details
+
+For chess logic used [Chess.js](https://github.com/jhlywa/chess.js) library
+For chess board used [react-chessboard](https://github.com/Clariity/react-chessboard)
+For telegram Web App react bindins user [react-telegram-web-app](https://github.com/vkruglikov/react-telegram-web-app)
+For telegram bot server used [Telegraf](https://github.com/telegraf/telegraf)
+For database connection and migrations used [Drizzle ORM](https://orm.drizzle.team)
+For websockets used [Socket.IO](https://socket.io)
 
 ## TODO
 
