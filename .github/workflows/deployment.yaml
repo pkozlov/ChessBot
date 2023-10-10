@@ -21,8 +21,8 @@ jobs:
             GITHUB_TOKEN: ${{ github.token }}
             WERF_ENV: prod
             WERF_KUBECONFIG_BASE64: ${{ secrets.KUBECONFIG_BASE64 }}
+            WERF_SECRET_KEY: ${{ secrets.WERF_SECRET_KEY }}
             WERF_VALUES_FILE: .helm/values.yaml
+            WERF_SECRET_VALUES_FILE: .helm/secret-values.yaml
             WERF_KUBE_CONTEXT: kozlov-cloud-github-runner-deploy.kozlov-cloud
             REACT_APP_BOT_URI: ${{ vars.REACT_APP_BOT_URI }}
-            WERF_SET_STRING_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-            WERF_SET_STRING_DOCKERCONFIG_JSON: ${{ secrets.DOCKERCONFIG_JSON }}
