@@ -1,0 +1,40 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: chessbot-postgresql
+  labels:
+    app: chessbot
+  annotations:
+    checksum/configmap-app-envs: '{{ include (print $.Template.BasePath "/configmaps/app-envs.yaml") . | sha256sum }}'
+spec:
+  teamId: "chessbot"
+  volume:
+    size: "{{ .Values.postgresql.storageSize }}"
+    storageClass: {{ .Values.storageClassName }}
+  numberOfInstances: {{ .Values.postgresql.numberOfInstances }}
+  enableLogicalBackup: {{ .Values.postgresql.enableLogicalBackup }}
+  users:
+    zalando:  # database owner
+      - superuser
+      - createdb
+  databases:
+    chessbot: chessbot_owner  # dbname: owner
+  preparedDatabases:
+    chessbot:
+      defaultUsers: true
+      schemas:
+        public:
+          defaultUsers: false
+  postgresql:
+    version: "15"
+    parameters:
+      max_standby_archive_delay: "180"
+      max_standby_streaming_delay: "180"
+      hot_standby_feedback: "on"
+  resources:
+    requests:
+      cpu: {{ .Values.postgresql.resources.requests.cpu }}
+      memory: {{ .Values.postgresql.resources.requests.memory }}
+    limits:
+      cpu: {{ .Values.postgresql.resources.limits.cpu }}
+      memory: {{ .Values.postgresql.resources.limits.memory }}

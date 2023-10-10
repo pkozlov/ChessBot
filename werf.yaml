@@ -1,0 +1,16 @@
+project: chessbot
+configVersion: 1
+
+---
+image: backend
+dockerfile: Dockerfile
+target: backend
+args:
+  REACT_APP_BOT_URI: {{ env "REACT_APP_BOT_URI" }}
+
+---
+image: frontend
+dockerfile: Dockerfile
+target: frontend
+args:
+  REACT_APP_BOT_URI: {{ env "REACT_APP_BOT_URI" }}

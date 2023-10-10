@@ -1,0 +1,27 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+    prod:
+      name: prod
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+  
+        - uses: werf/actions/install@v1.2
+  
+        - run: |
+            source "$(werf ci-env github --as-file)"
+            werf converge
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
+            WERF_ENV: prod
+            WERF_KUBECONFIG_BASE64: ${{ secrets.KUBECONFIG_BASE64 }}
+            WERF_VALUES_FILE: .helm/values.yaml
+            WERF_KUBE_CONTEXT: kozlov-cloud-github-runner-deploy.kozlov-cloud
+            REACT_APP_BOT_URI: ${{ vars.REACT_APP_BOT_URI }}
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

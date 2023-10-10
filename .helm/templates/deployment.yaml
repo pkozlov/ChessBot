@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chessbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chessbot
+  template:
+    metadata:
+      labels:
+        app: chessbot
+      annotations:
+        checksum/configmap-app-envs: '{{ include (print $.Template.BasePath "/configmaps/app-envs.yaml") . | sha256sum }}'
+        # checksum/secret-app-envs: '{{ include (print $.Template.BasePath "/secrets/app-envs.yaml") . | sha256sum }}'
+        checksum/nginx-conf: '{{ include (print $.Template.BasePath "/configmaps/nginx.yaml") . | sha256sum }}'
+    spec:
+      imagePullSecrets:
+      - name: registry-secret
+      containers:
+      - name: backend
+        image: {{ .Values.werf.image.backend }}
+        command: ["node", "server/index.js"]
+        ports:
+            - containerPort: 3000
+        envFrom:
+            - configMapRef:
+                name: app-envs
+            - secretRef:
+                name: app-envs
+        env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: password
+      - name: frontend
+        image: {{ .Values.werf.image.frontend }}
+        ports:
+            - containerPort: 80
+        volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              name: nginx-conf
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chessbot
+spec:
+  selector:
+    app: chessbot
+  ports:
+  - name: http
+    port: 80

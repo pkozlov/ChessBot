@@ -1,0 +1,19 @@
+host: chessbot.kozlov.cloud
+postgresql:
+  storageSize: "10Gi"
+  numberOfInstances: 1
+  enableLogicalBackup: true
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 2000m
+      memory: 5Gi
+app:
+  envs:
+    NODE_ENV: production
+    REACT_APP_BOT_URI: t.me/ChessContestBot/game
+    WEBHOOK_DOMAIN: chessbot.kozlov.cloud
+    DB_HOST: chessbot-postgresql
+    DB_NAME: chessbot

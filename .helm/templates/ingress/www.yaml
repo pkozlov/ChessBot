@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: chessbot
+spec:
+  tls:
+  - hosts:
+      - chessbot.kozlov.cloud
+    secretName: tls-chessbot
+  rules:
+  - host: chessbot.kozlov.cloud
+    http: 
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chessbot
+            port:
+              number: 80
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chessbot-cert
+spec:
+  secretName: tls-chessbot
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  commonName: chessbot.kozlov.cloud
+  dnsNames:
+    - chessbot.kozlov.cloud
