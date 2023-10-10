@@ -1,4 +1,4 @@
-import { boolean, timestamp, integer, bigint, pgTable, text, serial, index, varchar, uniqueIndex } from 'drizzle-orm/pg-core';
+import { boolean, timestamp, bigint, pgTable, text, serial, index, varchar } from 'drizzle-orm/pg-core';
 
 Object.defineProperty(BigInt.prototype, "toJSON", {
   get() {
