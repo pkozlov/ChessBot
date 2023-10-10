@@ -31,6 +31,7 @@ spec:
   patroni:
     # https://www.postgresql.org/docs/8.0/client-authentication.html
     pg_hba:
+      - local   all all           trust
       - hostssl all all 0.0.0.0/0 md5
       - host    all all 0.0.0.0/0 md5
   resources:
