@@ -61,6 +61,18 @@ To expose local server with publicly available https endpoint you can use [Cloud
 - `npm run makemigrations` Create migration with database changes
 - `npm run studio` Run server with [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview) to manage database
 
+## Production deployment
+
+You can use any server to deploy compiled backend and frontend. Several common steps to build production server:
+
+1. Run `npm run build` to build Mini App frontend to folder `build`
+2. Run `npm run build-server` to build Mini App backend server `server-build`
+3. To start backend server you need to have `node_modules` folder with installed requirements and run `node server-build/index.js` (default port: `3000`). Probably you want to use some runner at server side like `supervisor` or `pm2`. Feel free to use whatever you like best. Don't forget about environment variables.
+4. By default backend server will serve static files with frontend from `build` folder. But best practice is to use special web server like `nginx` to process static files and proxy API calls. You can find example of nginx configuration packed to helm ConfigMap [here](https://github.com/pkozlov/ChessBot/blob/main/.helm/templates/configmaps/nginx.yaml).
+5. Secure your web server with HTTPS. Just use [Let's Encrypt](https://letsencrypt.org/) or [Cloudflare](https://www.cloudflare.com)
+6. Configure Bot and Mini App with [@BotFather](https://t.me/BotFather). More information you can find in [official documentation](https://core.telegram.org/bots/webapps).
+7. Just share your bot with freinds and play chess!
+
 ## TODO
 
 - Unit tests
