@@ -1,12 +1,12 @@
 # Chess game bot and Mini App for Telegram
 
-[@ChessContestBot](https://t.me/ChessContestBot) – a Mini App that provides multiplayer chess game. User can select side and create new game and share provided link to game with opponent. When opponent join the game user will recieve notifications from bot about game moves. Every telegram user who have link to the game can see competition online.
+[@ChessContestBot](https://t.me/ChessContestBot) is a Mini App designed to offer a multiplayer chess gaming experience. Users have the option to choose their side and create a new game, after which they can share the provided game link with their opponent. When the opponent joins the game, the user will receive notifications from the bot regarding the game's progress. Every Telegram user with access to the game link can view the ongoing competition in real-time.
 
 This project was created for [Telegram Mini App Contest](https://t.me/contest/327).
 
 ## Environment
 
-For local development or production build you need to define environment variables (also you can use `.env` file at project root):
+To facilitate local development or production builds, you must define environment variables. You can also utilize a `.env` file located at the project's root directory:
 
 - `REACT_APP_BOT_URI` URL to your Telegram Mini App without protocol. Example: `t.me/ChessContestBot/game`
 - `WEBHOOK_DOMAIN` Domain where your Mini App deployed. Example: `chessbot.kozlov.cloud`
@@ -32,25 +32,28 @@ DB_NAME=chess
 
 ## Installation
 
-1. To build and run Mini App server local you need to have installed:
+To build and run the Mini App server locally, you need to have the following installed:
 
-- [PostgreSQL database](https://www.postgresql.org) version >= 14
-- [Node.js](https://nodejs.org/) version >= 18
+- [PostgreSQL database](https://www.postgresql.org) (version >= 14)
+- [Node.js](https://nodejs.org/) (version >= 18)
 
-2. In project root with configured environment run:
+Follow these steps for installation:
+
+1. In the project root directory, with your environment properly configured, run the following command to install project dependencies:
 
 `npm install`
 
-3. Build Mini App frontend:
+2. Build the Mini App frontend by executing:
 
 `npm run build`
 
-4. Start development server on port `3000`:
+3. Start the development server on port `3000` with the following command:
 
 `npm run server`
 
-Database migrations will be applied at every server run.
-To expose local server with publicly available https endpoint you can use [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) or [ngrok](https://ngrok.com).
+Database migrations will be automatically applied every time the server is started.
+
+To expose your local server with a publicly available HTTPS endpoint, you can use either [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) or [ngrok](https://ngrok.com).
 
 ## Available commands
 
@@ -73,9 +76,15 @@ To deploy the compiled backend and frontend, you can use any server of your choi
 6. Configure your Bot and Mini App with [@BotFather](https://t.me/BotFather). For more information, refer to the [official documentation](https://core.telegram.org/bots/webapps).
 7. Share your bot with friends and enjoy playing chess!
 
+Also we have working `Dockerfile` with frontend and backend images.
+
 ## Production deployment to Kubernetes with werf
 
-[@ChessContestBot](https://t.me/ChessContestBot) is deployed in Kubernetes using [werf](https://werf.io/)
+[@ChessContestBot](https://t.me/ChessContestBot) is deployed in Kubernetes using [werf](https://werf.io/).
+
+You can find configuration in `.helm` folder and `werf.yaml` file.
+
+Set environment for Kubernetes config, like ``
 
 ## TODO
 

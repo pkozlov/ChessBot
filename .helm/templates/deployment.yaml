@@ -26,7 +26,7 @@ spec:
         - -euc
         - |
           # Waiting until the database is available and migrations are completed.
-          until npm run db-check; do
+          until node ./node_modules/drizzle-kit/index.cjs introspect:pg; do
             sleep 1
           done
         env:

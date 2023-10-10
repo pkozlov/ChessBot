@@ -1,4 +1,5 @@
 host: chessbot.kozlov.cloud
+storageClassName: localpath-system
 postgresql:
   storageSize: "10Gi"
   numberOfInstances: 1
