@@ -60,12 +60,12 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  name: postgres.chessbot-postgresql.credentials.postgresql.acid.zalan.do
                   key: username
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  name: postgres.chessbot-postgresql.credentials.postgresql.acid.zalan.do
                   key: password
       - name: frontend
         image: {{ .Values.werf.image.frontend }}
