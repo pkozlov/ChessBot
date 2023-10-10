@@ -29,7 +29,7 @@ data:
         client_max_body_size 32M;
         keepalive_timeout 10s;
     
-        location ~ ^/(api|telegraf|socket.io) {
+        location ~ ^/(api|telegraf) {
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $http_host;
             proxy_redirect off;
@@ -47,28 +47,18 @@ data:
             }
         }
 
-        location /websocket/ {
-            # internal location only can access by rewrite, if client open /websocket/ will return 404
-            internal;
+        location /socket.io/ {
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
 
-            proxy_pass http://backend/;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "Upgrade";
-            proxy_set_header Host $http_host;
+          proxy_pass http://backend;
+
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
         }
                 
         location / {
-          set $websocket 1;
-          if ($http_connection !~* "upgrade") {
-              set $websocket 0;
-          }
-          if ($http_upgrade !~* "websocket") {
-              set $websocket 0;
-          }
-          if ($websocket) {
-              rewrite ^ /websocket$uri last;
-          }
           root /www/;
           # add_header Cache-Control no-cache;
           # expires 0;
