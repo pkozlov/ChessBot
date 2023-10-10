@@ -10,8 +10,8 @@ COPY / .
 ARG REACT_APP_BOT_URI
 RUN echo ${REACT_APP_BOT_URI}
 
-RUN npm build
-RUN npm build-server
+RUN npm run build
+RUN npm run build-server
 
 #############################################################################
 
