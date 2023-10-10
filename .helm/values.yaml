@@ -9,7 +9,7 @@ postgresql:
       memory: 1Gi
     limits:
       cpu: 2000m
-      memory: 5Gi
+      memory: 3Gi
 app:
   envs:
     NODE_ENV: production

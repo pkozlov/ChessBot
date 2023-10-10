@@ -18,6 +18,20 @@ spec:
     spec:
       imagePullSecrets:
       - name: registry-secret
+      initContainers:
+      - name: wait-db-readiness
+        image: {{ .Values.werf.image.backend }}
+        command:
+        - sh
+        - -euc
+        - |
+          # Waiting until the database is available and migrations are completed.
+          until npm run db-check; do
+            sleep 1
+          done
+        env:
+        - name: NODE_ENV
+          value: production
       containers:
       - name: backend
         image: {{ .Values.werf.image.backend }}

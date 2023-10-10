@@ -50,6 +50,7 @@
     "studio": "drizzle-kit studio",
     "makemigrations": "drizzle-kit generate:pg",
     "server": "tsx src/server.ts",
+    "db-check": "drizzle-kit introspect:pg",
     "build-server": "NODE_ENV=production webpack --config webpack.server.js --mode=production"
   },
   "eslintConfig": {
