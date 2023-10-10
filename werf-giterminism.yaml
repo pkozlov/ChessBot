@@ -3,5 +3,3 @@ config:
   goTemplateRendering:
     allowEnvVariables:
       - REACT_APP_BOT_URI
-      - DOCKERCONFIG_JSON
-      - TELEGRAM_BOT_TOKEN
