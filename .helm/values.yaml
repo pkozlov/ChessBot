@@ -18,4 +18,4 @@ app:
     WEBHOOK_DOMAIN: chessbot.kozlov.cloud
     DB_HOST: chessbot-postgresql
     DB_NAME: chessbot
-    DB_SSLMODE: required
+    # DB_SSLMODE: required
