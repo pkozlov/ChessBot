@@ -5,13 +5,18 @@ import pg from 'pg';
 import * as schema from './schema';
 
 const { Client } = pg;
- 
-const client = new Client({
+
+const config : any = {
   connectionString: `postgres://${process.env.DB_USER || "postgres"}:${process.env.DB_PASS}@${process.env.DB_HOST || "localhost"}:${process.env.DB_PORT || "5432"}/${process.env.DB_NAME || "chess"}${process.env.DB_SSLMODE ? '?sslmode=require' : ''}`,
-  ssl: process.env.DB_SSLMODE ? {
+}
+
+if (process.env.DB_SSLMODE) {
+  config.ssl = {
     rejectUnauthorized: false
-  } : false
-});
+  };
+}
+ 
+const client = new Client(config);
 
 const db = drizzle(client, { schema });
 
