@@ -93,14 +93,20 @@ This configuration uses [Zalando Postgres Operator](https://github.com/zalando/p
 
 For more information, refer to the [werf official documentation](https://werf.io/documentation/v1.2/).
 
-## Imlementation details
+## Implementation details
 
-For chess logic used [Chess.js](https://github.com/jhlywa/chess.js) library
-For chess board used [react-chessboard](https://github.com/Clariity/react-chessboard)
-For telegram Web App react bindins user [react-telegram-web-app](https://github.com/vkruglikov/react-telegram-web-app)
-For telegram bot server used [Telegraf](https://github.com/telegraf/telegraf)
-For database connection and migrations used [Drizzle ORM](https://orm.drizzle.team)
-For websockets used [Socket.IO](https://socket.io)
+Chess logic: [Chess.js](https://github.com/jhlywa/chess.js) library
+
+Chess board: [react-chessboard](https://github.com/Clariity/react-chessboard)
+
+Telegram Web App react bindins: [react-telegram-web-app](https://github.com/vkruglikov/react-telegram-web-app)
+
+Telegram bot server: [Telegraf](https://github.com/telegraf/telegraf)
+
+Websockets: [Socket.IO](https://socket.io)
+
+Database connection and migrations: [Drizzle ORM](https://orm.drizzle.team). Migrations placed in `migrations` folder.
+
 
 ## TODO
 
