@@ -41,7 +41,7 @@ spec:
       - host    all             all          ::1/128            md5
       - local   replication     standby                         trust
       - hostssl replication     standby      all                md5
-      - hostnossl chessbot      chessbot_owner  all             trust
+      - hostnossl chessbot      chessbot_owner_user  all             trust
       - hostnossl all           all          all                reject
       - hostssl all             +zalandos    all                pam
       - hostssl all             all          all                md5

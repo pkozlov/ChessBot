@@ -18,33 +18,33 @@ spec:
     spec:
       imagePullSecrets:
       - name: registry-secret
-      # initContainers:
-      # - name: wait-db-readiness
-      #   image: {{ .Values.werf.image.backend }}
-      #   command:
-      #   - sh
-      #   - -euc
-      #   - |
-      #     # Waiting until the database is available and migrations are completed.
-      #     until node ./node_modules/drizzle-kit/index.cjs introspect:pg; do
-      #       sleep 1
-      #     done
-      #   env:
-      #       - name: DB_USER
-      #         valueFrom:
-      #           secretKeyRef:
-      #             name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
-      #             key: username
-      #       - name: DB_PASS
-      #         valueFrom:
-      #           secretKeyRef:
-      #             name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
-      #             key: password
-      #   envFrom:
-      #       - configMapRef:
-      #           name: app-envs
-      #       - secretRef:
-      #           name: app-envs
+      initContainers:
+      - name: wait-db-readiness
+        image: {{ .Values.werf.image.backend }}
+        command:
+        - sh
+        - -euc
+        - |
+          # Waiting until the database is available and migrations are completed.
+          until node ./node_modules/drizzle-kit/index.cjs introspect:pg; do
+            sleep 1
+          done
+        env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: chessbot-owner-user.chessbot-postgresql.credentials.postgresql.acid.zalan.do
+                  key: password
+        envFrom:
+            - configMapRef:
+                name: app-envs
+            - secretRef:
+                name: app-envs
       containers:
       - name: backend
         image: {{ .Values.werf.image.backend }}
