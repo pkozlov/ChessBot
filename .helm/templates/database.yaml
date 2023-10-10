@@ -19,9 +19,6 @@ spec:
       - createdb
   databases:
     chessbot: chessbot_owner  # dbname: owner
-  preparedDatabases:
-    chessbot:
-      defaultUsers: true
   postgresql:
     version: "14"
     parameters:
