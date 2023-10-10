@@ -34,7 +34,7 @@ DB_NAME=chess
 
 1. To build and run Mini App server local you need to have installed:
 
-- [PostgreSQL database](https://www.postgresql.org) version >= 15
+- [PostgreSQL database](https://www.postgresql.org) version >= 14
 - [Node.js](https://nodejs.org/) version >= 18
 
 2. In project root with configured environment run:
@@ -61,17 +61,21 @@ To expose local server with publicly available https endpoint you can use [Cloud
 - `npm run makemigrations` Create migration with database changes
 - `npm run studio` Run server with [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview) to manage database
 
-## Production deployment
+## Production Deployment
 
-You can use any server to deploy compiled backend and frontend. Several common steps to build production server:
+To deploy the compiled backend and frontend, you can use any server of your choice. Follow these common steps to set up a production server:
 
-1. Run `npm run build` to build Mini App frontend to folder `build`
-2. Run `npm run build-server` to build Mini App backend server `server-build`
-3. To start backend server you need to have `node_modules` folder with installed requirements and run `node server-build/index.js` (default port: `3000`). Probably you want to use some runner at server side like `supervisor` or `pm2`. Feel free to use whatever you like best. Don't forget about environment variables.
-4. By default backend server will serve static files with frontend from `build` folder. But best practice is to use special web server like `nginx` to process static files and proxy API calls. You can find example of nginx configuration packed to helm ConfigMap [here](https://github.com/pkozlov/ChessBot/blob/main/.helm/templates/configmaps/nginx.yaml).
-5. Secure your web server with HTTPS. Just use [Let's Encrypt](https://letsencrypt.org/) or [Cloudflare](https://www.cloudflare.com)
-6. Configure Bot and Mini App with [@BotFather](https://t.me/BotFather). More information you can find in [official documentation](https://core.telegram.org/bots/webapps).
-7. Just share your bot with freinds and play chess!
+1. Build the Mini App frontend by running `npm run build`. This will generate the frontend files in the `build` folder.
+2. Build the Mini App backend server by running `npm run build-server`. This will create the `server-build` directory.
+3. To start the backend server, ensure you have the `node_modules` folder with all the required dependencies installed. Then, run `node server-build/index.js` (default port: `3000`). You may consider using a server process manager like `supervisor` or `pm2` for improved server management. Don't forget to configure the necessary environment variables.
+4. By default, the backend server will serve static files from the `build` folder. However, it is recommended to use a dedicated web server like `nginx` to handle static files and proxy API calls. You can find an example of an nginx configuration in the Helm ConfigMap [here](https://github.com/pkozlov/ChessBot/blob/main/.helm/templates/configmaps/nginx.yaml).
+5. Ensure the security of your web server by implementing HTTPS. You can use services like [Let's Encrypt](https://letsencrypt.org/) or [Cloudflare](https://www.cloudflare.com) for this purpose.
+6. Configure your Bot and Mini App with [@BotFather](https://t.me/BotFather). For more information, refer to the [official documentation](https://core.telegram.org/bots/webapps).
+7. Share your bot with friends and enjoy playing chess!
+
+## Production deployment to Kubernetes with werf
+
+[@ChessContestBot](https://t.me/ChessContestBot) is deployed in Kubernetes using [werf](https://werf.io/)
 
 ## TODO
 

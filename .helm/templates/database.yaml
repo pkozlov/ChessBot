@@ -26,7 +26,7 @@ spec:
         public:
           defaultUsers: false
   postgresql:
-    version: "15"
+    version: "14"
     parameters:
       max_standby_archive_delay: "180"
       max_standby_streaming_delay: "180"
