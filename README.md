@@ -107,12 +107,12 @@ Websockets: [Socket.IO](https://socket.io)
 
 Database connection and migrations: [Drizzle ORM](https://orm.drizzle.team). Migrations placed in `migrations` folder.
 
-
 ## TODO
 
 - Unit tests
 - Translations to other languages
 - List of your games
+- Game timer
 - History of game moves with possibility to go backward and forward
 - Logging and tracing
 
