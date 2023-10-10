@@ -13,7 +13,7 @@ spec:
         app: chessbot
       annotations:
         checksum/configmap-app-envs: '{{ include (print $.Template.BasePath "/configmaps/app-envs.yaml") . | sha256sum }}'
-        # checksum/secret-app-envs: '{{ include (print $.Template.BasePath "/secrets/app-envs.yaml") . | sha256sum }}'
+        checksum/secret-app-envs: '{{ include (print $.Template.BasePath "/secrets/app-envs.yaml") . | sha256sum }}'
         checksum/nginx-conf: '{{ include (print $.Template.BasePath "/configmaps/nginx.yaml") . | sha256sum }}'
     spec:
       imagePullSecrets:
