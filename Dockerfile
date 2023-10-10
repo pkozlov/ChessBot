@@ -20,6 +20,7 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
+COPY --from=nodebuilder /drizzle.config.ts ./
 COPY --from=nodebuilder /app/node_modules ./node_modules
 COPY --from=nodebuilder /app/build ./build
 COPY --from=nodebuilder /app/server-build ./server
