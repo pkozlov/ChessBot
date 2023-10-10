@@ -1,26 +1,53 @@
 {
   "name": "chessbot",
   "version": "0.1.0",
+  "author": "Pavel Kozlov (https://pkozlov.com/)",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.57",
+    "@types/node": "^16.18.58",
+    "@types/pg": "^8.10.3",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
+    "@vkruglikov/react-telegram-web-app": "^2.1.4",
+    "axios": "^1.5.1",
+    "chess.js": "^1.0.0-beta.6",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.28.6",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
     "react": "^18.2.0",
+    "react-chessboard": "^4.2.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-loader-spinner": "^5.4.5",
+    "runtypes": "^6.7.0",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "telegraf": "^4.14.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/crypto-js": "^4.1.2",
+    "@types/react-copy-to-clipboard": "^5.0.5",
+    "drizzle-kit": "^0.19.13",
+    "react-scripts": "5.0.1",
+    "tsx": "^3.13.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "studio": "drizzle-kit studio",
+    "makemigrations": "drizzle-kit generate:pg",
+    "server": "tsx src/server.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -28,6 +55,7 @@
       "react-app/jest"
     ]
   },
+  "type": "module",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,5 +67,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "license" : "MIT"
 }

@@ -1,0 +1,72 @@
+.App, .StartPage {
+  text-align: center;
+}
+
+.StartPage .inside {
+  margin: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background: var(--tg-theme-secondary-bg-color);
+}
+
+.StartPage button {
+  padding: 14px;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 5px;
+  border: none;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  cursor: pointer;
+}
+
+.StartPage button:last-child {
+  margin-bottom: 1em;
+}
+
+.Loading {
+  text-align: center;
+}
+
+.ChessGame p {
+  margin: 15px 0;
+  white-space: nowrap;
+  hyphens: none;
+}
+
+
+.ChessGame .GameOver {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 100;
+  opacity: 0.5;
+  color: black;
+}
+
+.ChessGame .CopyLink {
+  color: var(--tg-theme-link-color);
+  cursor: pointer;
+  text-decoration: dashed;
+}
+
+.ChessGame .Copied {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+.ChessGame .show {
+  opacity: 1;
+}
+
+.ChessGame .Turn {
+  background-color: #00ff00;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px 5px;
+  color: black;
+  margin-left: 10px;
+}
