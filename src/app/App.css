@@ -32,6 +32,10 @@
   margin: 15px 0;
   white-space: nowrap;
   hyphens: none;
+  user-select: none;
+}
+.ChessGame p:last-child {
+  margin-top: 28px;
 }
 
 
