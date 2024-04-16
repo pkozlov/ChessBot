@@ -28,6 +28,10 @@
   text-align: center;
 }
 
+.ChessGame {
+  user-select: none;
+}
+
 .ChessGame p {
   margin: 15px 0;
   white-space: nowrap;
